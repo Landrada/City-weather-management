@@ -17,6 +17,8 @@ public class CityService {
 	private ICityRepository cityRepository;
 	
 	public Optional<City> getById(long id) {
+//		Optional<City> city = cityRepository.findById(id);
+//		
 		
 		return cityRepository.findById(id);
 	}
@@ -31,10 +33,14 @@ public class CityService {
 		return cityRepository.existsByName(name);
 	}
 
-	public City save(CreateCityDTO dto) {
-		City city =  new City(dto.getName(), dto.getWeather());
+	public City save(City city2) {
+		City city =  new City(city2.getName(), city2.getWeather());
 		return cityRepository.save(city);
 	}
-	
+	public float calculateFahreneit(City city) {
+//		(city.getWeather()*1.8)+32;
+		return (float) ((city.getWeather()*1.8)+32);
+		
+	}
 
 }
